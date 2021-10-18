@@ -108,13 +108,7 @@ public class VDFObject {
 
     private void toStringInternal(StringBuilder sb, int tabsAmount) {
         String tabString = "\t".repeat(tabsAmount);
-        boolean first = true;
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (first) {
-                first = false;
-            } else {
-                sb.append('\n');
-            }
             sb.append(tabString);
 
             sb.append('"').append(entry.getKey()).append('"');

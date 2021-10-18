@@ -6,7 +6,7 @@
 
     <groupId>me.mrgazdag</groupId>
     <artifactId>vdf-reader</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
