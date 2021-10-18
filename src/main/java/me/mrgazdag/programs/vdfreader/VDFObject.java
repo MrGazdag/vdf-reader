@@ -118,7 +118,6 @@ public class VDFObject {
                 sb.append('\n');
                 sb.append(tabString).append("{\n");
                 obj.toStringInternal(sb,tabsAmount+1);
-                sb.append('\n');
                 sb.append(tabString).append("}\n");
             }
         }
