@@ -1,13 +1,14 @@
 package me.mrgazdag.programs.vdfreader;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class VDFObject {
     private final Map<String,Object> map;
 
     public VDFObject() {
-        this.map = new HashMap<>();
+        this.map = new LinkedHashMap<>();
     }
 
     public VDFObject(String data) {
@@ -15,7 +16,7 @@ public class VDFObject {
     }
 
     public VDFObject(StringReader sr) {
-        this.map = new HashMap<>();
+        this();
 
         while (sr.canRead()) {
             if (sr.peek() == '}') break; //break recursiveness
@@ -95,6 +96,37 @@ public class VDFObject {
 
     public VDFObject getObject(String key) {
         return (VDFObject) map.get(key);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        toStringInternal(sb, 0);
+        return sb.toString();
+    }
+
+    private void toStringInternal(StringBuilder sb, int tabsAmount) {
+        String tabString = "\t".repeat(tabsAmount);
+        boolean first = true;
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            if (first) {
+                first = false;
+            } else {
+                sb.append('\n');
+            }
+            sb.append(tabString);
+
+            sb.append('"').append(entry.getKey()).append('"');
+            if (entry.getValue() instanceof String s) {
+                sb.append("\t\t\"").append(s).append("\"\n");
+            } else if (entry.getValue() instanceof VDFObject obj) {
+                sb.append('\n');
+                sb.append(tabString).append("{\n");
+                obj.toStringInternal(sb,tabsAmount+1);
+                sb.append('\n');
+                sb.append(tabString).append("}\n");
+            }
+        }
     }
 
     private static RuntimeException EXPECTED(String expected, StringReader sr) {
