@@ -51,6 +51,7 @@ public class VDFObject {
                 if (!sr.canRead()) throw EXPECTED("object body", sr);
                 VDFObject obj = new VDFObject(sr);
                 map.put(key.toString(), obj);
+                sr.skip(); //}
             } else if (sr.peek() == '"') {
                 sr.skip(); //"
                 //string value
@@ -73,7 +74,6 @@ public class VDFObject {
                     }
                 }
                 map.put(key.toString(), value.toString());
-                sr.skip();//}
             }
         }
     }
