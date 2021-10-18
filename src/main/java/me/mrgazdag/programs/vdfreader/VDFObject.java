@@ -19,9 +19,9 @@ public class VDFObject {
         this();
 
         while (sr.canRead()) {
+            sr.skipWhitespace();
             if (sr.peek() == '}') break; //break recursiveness
 
-            sr.skipWhitespace();
             if (!sr.canRead()) break;
             if (sr.peek() != '"') throw EXPECTED_FOUND("key start quote", sr);
             sr.skip(); //"
