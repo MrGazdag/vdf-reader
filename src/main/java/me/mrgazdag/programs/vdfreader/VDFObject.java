@@ -52,6 +52,7 @@ public class VDFObject {
                 VDFObject obj = new VDFObject(sr);
                 map.put(key.toString(), obj);
             } else if (sr.peek() == '"') {
+                sr.skip(); //"
                 //string value
                 StringBuilder value = new StringBuilder();
                 escaping = false;
