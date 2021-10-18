@@ -73,6 +73,7 @@ public class VDFObject {
                     }
                 }
                 map.put(key.toString(), value.toString());
+                sr.skip();//}
             }
         }
     }
