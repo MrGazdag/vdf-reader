@@ -100,6 +100,10 @@ public class VDFObject {
         return (VDFObject) map.get(key);
     }
 
+    public boolean containsKey(String key) {
+        return map.containsKey(key);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
